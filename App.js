@@ -1,20 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import Splash from './view/Splash'
+import CalculatorView from './view/CalculatorView'
+import { boolean } from 'yargs';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working the app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  //const [isLoading, setIsLoading] = React.useState<boolean>(true);
+
+  return  <Splash/>
+
+  //return isLoading ? <Splash setIsLoading = {setIsLoading}/> : <CalculatorView/>;
+}
