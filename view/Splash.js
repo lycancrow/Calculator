@@ -1,7 +1,6 @@
 import React, { Dispatch } from "react";
 import LottieView from "lottie-react-native";
 import { StyleSheet, View } from "react-native";
-import { Interface } from "readline";
 
 
 
