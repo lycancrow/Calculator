@@ -16,7 +16,29 @@ export default function App() {
 
     // this const refresh the value in the text
     const handleButtonPress = (value) => {
-        setDisplayText(displayText + value);
+        if (value === 'AC') {
+            setDisplayText(''); // Borrar el contenido del display si el valor es 'AC'
+        } else if (value === '=') {
+            try {
+                let expression = displayText;
+
+                expression = expression.replace('√', 'Math.sqrt(');
+                expression = expression.replace('π', 'Math.PI');
+                expression = expression.replace('exp', 'Math.exp');
+                expression = expression.replace(/!/g, 'factorial');
+
+                if (expression.includes('Math.sqrt(')) {
+                    expression += ')';
+                }
+                
+                const result = eval(expression);
+                setDisplayText(result.toString()); 
+            } catch (error) {
+                setDisplayText('Error'); // Mostrar 'Error' si hay un error en la evaluación
+            }
+        } else {
+            setDisplayText(displayText + value);
+        }
     };
     
 
@@ -30,7 +52,7 @@ export default function App() {
                 style={styles.background}
             />
 
-            <Text style = {styles.TextInput}>display</Text>
+            <Text style = {styles.TextInput}>{displayText}</Text>
 
 
             <View style = {[styles.row, {marginTop: 50}]}>
@@ -38,7 +60,7 @@ export default function App() {
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
-                <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity} onPress={Alert.alert('esta Funcionando')}/>
+                <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity} onPress={() => handleButtonPress(number.toString())} />
                 </TouchableOpacity>
                  ))}
             </View>
@@ -48,18 +70,18 @@ export default function App() {
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
-                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity}/>
+                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity} onPress={() => handleButtonPress(number.toString())}/>
                 </TouchableOpacity>
                  ))}
             </View>
 
          
             <View style = {styles.row}>
-                {[7, 8, 9, 'X'].map((number, index) => (
+                {[7, 8, 9, '*'].map((number, index) => (
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
-                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity}/>
+                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity} onPress={() => handleButtonPress(number.toString())}/>
                 </TouchableOpacity>
                  ))}
             </View>
@@ -70,7 +92,7 @@ export default function App() {
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
-                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity}/>
+                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity} onPress={() => handleButtonPress(number.toString())}/>
                 </TouchableOpacity>
                  ))}
             </View>
@@ -81,7 +103,7 @@ export default function App() {
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
-                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity}/>
+                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity} onPress={() => handleButtonPress(number.toString())}/>
                  </TouchableOpacity>
                  ))}
             </View>
@@ -92,7 +114,7 @@ export default function App() {
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
-                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity}/>
+                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity} onPress={() => handleButtonPress(number.toString())}/>
                 
                 </TouchableOpacity>
                  ))}

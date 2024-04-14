@@ -6,11 +6,8 @@ import {LinearGradient} from 'expo-linear-gradient';
 
 export default function buttons({buttonText, gradientColor1, gradientColor2, opacity, onPress})
  {
-
-
     const handlePress = () => {
-        //alertMessage(); // Llama a la función de alerta cuando el botón es presionado
-        onPress(); // Llama a la función onPress pasada como prop
+        onPress(); 
     };
 
 
