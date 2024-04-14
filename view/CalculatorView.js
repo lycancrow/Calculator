@@ -14,27 +14,47 @@ export default function App() {
     // this const, stores the value to show
     const [displayText, setDisplayText] = useState(''); 
 
+    const factorial = (num) => {
+        if (num === 0 || num === 1) {
+          return 1;
+        } else {
+          return num * factorial(num - 1);
+        }
+      };
+
     // this const refresh the value in the text
     const handleButtonPress = (value) => {
         if (value === 'AC') {
             setDisplayText(''); // Borrar el contenido del display si el valor es 'AC'
-        } else if (value === '=') {
+        } else if (value === 'DEL') {
+            
+            setDisplayText(displayText.slice(0, -1));
+          } else if (value === '=') {
             try {
                 let expression = displayText;
 
                 expression = expression.replace('√', 'Math.sqrt(');
-                expression = expression.replace('π', 'Math.PI');
-                expression = expression.replace('exp', 'Math.exp');
-                expression = expression.replace(/!/g, 'factorial');
+                expression = expression.replace('π', '3.14159265');
+                expression = expression.replace('÷', '/');
+                expression = expression.replace(/(\d+)exp(\d+)/g, 'Math.pow($1, $2)');
+                expression = expression.replace(/(\d+)!/g, (_, num) => {
+                    const factorialResult = factorial(parseInt(num));
+                    return factorialResult.toString();
+                  });
+                  
 
                 if (expression.includes('Math.sqrt(')) {
                     expression += ')';
                 }
+
                 
                 const result = eval(expression);
                 setDisplayText(result.toString()); 
+
+
+
             } catch (error) {
-                setDisplayText('Error'); // Mostrar 'Error' si hay un error en la evaluación
+                setDisplayText('Error'); 
             }
         } else {
             setDisplayText(displayText + value);
@@ -66,7 +86,7 @@ export default function App() {
             </View>
 
             <View style = {styles.row}>
-                {['AC', '()', '%', '÷'].map((number, index) => (
+                {['AC', '(', ')', '÷'].map((number, index) => (
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
