@@ -7,13 +7,23 @@ import ButtonCalc from '../components/Buttons';
 
 export default function App() {
 
-    const hexaColor1 = '#E7BA7C'
-    const hexaColor2 = '#758718'
-  
+    const hexaColor1 = '#000000'
+    const hexaColor2 = '#FFFFFF'
+    const opacity = 70
+
+    // this const, stores the value to show
+    const [displayText, setDisplayText] = useState(''); 
+
+    // this const refresh the value in the text
+    const handleButtonPress = (value) => {
+        setDisplayText(displayText + value);
+    };
+    
 
     return(
         <View style = {styles.container}>
 
+            
             <LinearGradient
                 // Background Linear Gradient
                 colors={['#FFFFFF', 'transparent']}
@@ -28,7 +38,7 @@ export default function App() {
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
-                <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString()} />
+                <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity} onPress={Alert.alert('esta Funcionando')}/>
                 </TouchableOpacity>
                  ))}
             </View>
@@ -38,7 +48,7 @@ export default function App() {
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
-                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString()} />
+                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity}/>
                 </TouchableOpacity>
                  ))}
             </View>
@@ -49,7 +59,7 @@ export default function App() {
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
-                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString()} />
+                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity}/>
                 </TouchableOpacity>
                  ))}
             </View>
@@ -60,7 +70,7 @@ export default function App() {
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
-                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString()} />
+                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity}/>
                 </TouchableOpacity>
                  ))}
             </View>
@@ -71,7 +81,8 @@ export default function App() {
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
-                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString()} /></TouchableOpacity>
+                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity}/>
+                 </TouchableOpacity>
                  ))}
             </View>
 
@@ -81,7 +92,7 @@ export default function App() {
                 <TouchableOpacity
                 key={number}
                 style = {[index !== 0, {marginLeft: 10}]}>
-                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString()} />
+                 <ButtonCalc buttonText={number.toString()}  gradientColor1={hexaColor1.toString()} gradientColor2={hexaColor2.toString() }  opacity={opacity}/>
                 
                 </TouchableOpacity>
                  ))}
